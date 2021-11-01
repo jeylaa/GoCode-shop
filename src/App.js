@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 import React from "react";
+import { useState } from "react";
 const items = [
   {
     id: 1,
@@ -272,10 +273,26 @@ const items = [
 ];
 
 function App() {
+  const [productsDetails, setProductsDetails] = useState(items);
+  const categories = items
+    .map((p) => p.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
+
+  const handleChange = (e) => {
+    if (e.target.value === "all") {
+      setProductsDetails(items);
+    } else {
+      const filterCategories = items.filter(
+        (product) => product.category === e.target.value
+      );
+      setProductsDetails(filterCategories);
+    }
+  };
+
   return (
     <React.Fragment>
-      <Header />
-      <Products />
+      <Header categories={categories} handleChange={handleChange} />
+      <Products productsDetails={productsDetails} />
     </React.Fragment>
   );
 }
