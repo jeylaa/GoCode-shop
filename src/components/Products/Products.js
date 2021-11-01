@@ -1,12 +1,21 @@
 import Product from "../Product/Product";
 import "./Products.css";
-import { items } from "../../App";
-function Products() {
+function Products({ productsDetails }) {
   return (
     <section className="products">
-      {items.map(({ id, title, price, image }) => (
-        <Product id={id} title={title} price={price} image={image} />
-      ))}
+      {productsDetails.map(
+        ({ id, title, price, image, description, category, rating }) => (
+          <Product
+            id={id}
+            title={title}
+            price={price}
+            image={image}
+            description={description}
+            category={category}
+            rating={rating}
+          />
+        )
+      )}
     </section>
   );
 }
