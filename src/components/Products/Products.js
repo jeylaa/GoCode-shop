@@ -1,9 +1,9 @@
 import Product from "../Product/Product";
 import "./Products.css";
-function Products({ productsDetails }) {
+function Products({ products }) {
   return (
     <section className="products">
-      {productsDetails.map(
+      {products.map(
         ({ id, title, price, image, description, category, rating }) => (
           <Product
             id={id}
